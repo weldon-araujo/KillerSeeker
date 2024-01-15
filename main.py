@@ -17,23 +17,26 @@ def status_200():
             if req.status_code == 200:
                 print(f'success {req.status_code} {line}')
 
+def status_404():
+    pass
+
 
 def main_status():         
     with open(arguments.wordlist, 'r') as fil:
         lines = fil.readlines()
         for line in lines:
-            #req = requests.get('https://' + instance_target + line)
-            url = urljoin("https://" + instance_target + "/", line)
+            url = urljoin("http://" + instance_target + "/", line)
             req = requests.get(url)
             if req.status_code == 200:
-                print(f'{instance_target}/{line} {colored(req.status_code, "blue")}')
+                print(f'{instance_target}/{line} {colored(req.status_code, "green")}')
             elif req.status_code == 301:
                 print(f'{instance_target}/{line} {colored(req.status_code, "blue")}')
+            elif req.status_code == 302:
+                print(f'{instance_target}/{line} {colored(req.status_code, "blue")}')
             elif req.status_code == 403:
-                print(f'{instance_target}/{line} {colored(req.status_code, "yelow")}')
-            elif req.status_code == 404:
-                print(f'{instance_target}/{line} {colored(req.status_code, "red")}')
+                print(f'{instance_target}/{line}{colored(req.status_code, "yellow")}')
 
+            
 def useragent():
     pass
 
