@@ -25,7 +25,7 @@ def main_status():
     with open(arguments.wordlist, 'r') as fil:
         lines = fil.readlines()
         for line in lines:
-            url = urljoin("http://" + instance_target + "/", line)
+            url = urljoin("https://" + instance_target + "/", line)
             req = requests.get(url)
             if req.status_code == 200:
                 print(f'{instance_target}/{line} {colored(req.status_code, "green")}')
