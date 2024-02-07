@@ -33,13 +33,14 @@ def main_status():
                 headers = {}
             req = requests.get(url, headers=headers)
             if req.status_code == 200:
-                print(f'{instance_target}/{line} {colored(req.status_code, "green")}')
+                print(f'{instance_target}/{line.strip()} \t {colored(req.status_code, "green")} success')
             elif req.status_code == 301:
-                print(f'{instance_target}/{line} {colored(req.status_code, "blue")}')
+                print(f'{instance_target}/{line.strip()} \t {colored(req.status_code, "blue")} moved to new location')
             elif req.status_code == 302:
-                print(f'{instance_target}/{line} {colored(req.status_code, "blue")}')
+                print(f'{instance_target}/{line.strip()} \t {colored(req.status_code, "blue")} temporarily moved to a new location')
             elif req.status_code == 403:
-                print(f'{instance_target} {line} {colored(req.status_code, "yellow")}\t' * (10))
+                print(f'{instance_target}/{line.strip()} \t  {colored(req.status_code, "yellow")} forbidden')
+                
             
 
     
